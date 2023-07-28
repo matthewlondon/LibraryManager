@@ -35,7 +35,8 @@ Swagger using GET (or librarymanager.db file if using VisualStudioCode) and add 
 
 ### Book JSON Object
 
-Template:
+Templates:
+```json
 {
   "title": "string",
   "description": "string",
@@ -44,7 +45,6 @@ Template:
   }
 }
 
-```json
 {
   "title": "Botany for Gardeners",
   "description": "An informative guide to the science of botany, specifically tailored for gardeners and plant enthusiasts.",
@@ -68,15 +68,17 @@ Template:
     "name": "Thomas J. Elpel"
   }
 }
+```
 ### Author JSON Object
 
-Template:
+Templates:
+```json
 {
   "name": "string"
 }
 
-```json
 {
     "name": "Some Author"
 }
+```
 
