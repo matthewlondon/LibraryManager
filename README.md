@@ -21,10 +21,10 @@ The API supports the following functionalities:
 - Delete an author from the library (Note: When an author is deleted, all their associated books will be deleted as well).
 
 ### Features
--Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program
--Make your application a CRUD API
--Make your application asynchronous
--Have 2 or more tables (entities) in your application that are related and have a function return data from both entities.  In entity framework, this is equivalent to a join
+- Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program
+- Make your application a CRUD API
+- Make your application asynchronous
+- Have 2 or more tables (entities) in your application that are related and have a function return data from both entities.  In entity framework, this is equivalent to a join
 
 ## Usage
 
