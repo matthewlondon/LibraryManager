@@ -35,7 +35,7 @@ Swagger using GET (or librarymanager.db file if using VisualStudioCode) and add 
 
 ### Book JSON Object
 
-Templates:
+Post Templates:
 ```json
 {
   "title": "string",
@@ -69,9 +69,10 @@ Templates:
   }
 }
 ```
+
 ### Author JSON Object
 
-Templates:
+Post Templates:
 ```json
 {
   "name": "string"
@@ -81,4 +82,26 @@ Templates:
     "name": "Some Author"
 }
 ```
+### Example Book and Author after POST performed
+
+#####Author Only:
+```json
+{
+    "id": "fd1fb9b9-706b-4383-a7a9-b0818b67f1b3",
+    "name": "Michael Pollan"
+}
+```
+#####Book Object:
+```json
+{
+  "id": "d1b80801-feff-4910-ba77-18f76a615b02",
+  "title": "The Botany of Desire",
+  "description": "Explores the co-evolution of plants and humans through the lens of four popular crops: apples, tulips, marijuana, and potatoes.",
+  "author": {
+    "id": "fd1fb9b9-706b-4383-a7a9-b0818b67f1b3",
+    "name": "Michael Pollan"
+  }
+}
+```
+
 
