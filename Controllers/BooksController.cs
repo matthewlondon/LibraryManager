@@ -91,10 +91,26 @@ namespace LibraryManager.Controllers
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
-          if (_context.Books == null)
-          {
-              return Problem("Entity set 'LibraryManagerContext.Books'  is null.");
-          }
+            if (_context.Books == null)
+            {
+                return Problem("Entity set 'LibraryManagerContext.Books' is null.");
+            }
+
+            if (book.Author != null && !string.IsNullOrEmpty(book.Author.Name))
+            {
+                // Check if the author already exists in the database by name
+                var existingAuthor = await _context.Authors.FirstOrDefaultAsync(a => a.Name == book.Author.Name);
+                if (existingAuthor != null)
+                {
+                    book.Author = existingAuthor;
+                }
+                else
+                {
+                    book.Author.Id = null;
+                }
+            }
+
+            // Add the book to the database
             _context.Books.Add(book);
             await _context.SaveChangesAsync();
 
