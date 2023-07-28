@@ -1,4 +1,4 @@
-using LibraryManager;
+using LibraryManager.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

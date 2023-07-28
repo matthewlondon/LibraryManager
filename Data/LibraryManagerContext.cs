@@ -1,7 +1,7 @@
 ﻿using LibraryManager.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace LibraryManager
+namespace LibraryManager.Data
 {
     public class LibraryManagerContext : DbContext
     {
@@ -14,7 +14,7 @@ namespace LibraryManager
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            DbPath = System.IO.Path.Join(path, "librarymanager.db");
+            DbPath = Path.Join(path, "librarymanager.db");
         }
 
         // The following configures EF to create a Sqlite database file in the
