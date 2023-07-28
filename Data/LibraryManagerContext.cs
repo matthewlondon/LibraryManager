@@ -21,5 +21,7 @@ namespace LibraryManager.Data
         // special "local" folder for your platform.
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={DbPath}");
+
+        
     }
 }

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using LibraryManager.Models;
 using LibraryManager.Data;
+using LibraryManager.Models;
 
 namespace LibraryManager.Controllers
 {
@@ -34,7 +34,7 @@ namespace LibraryManager.Controllers
 
         // GET: api/Authors/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Author>> GetAuthor(int id)
+        public async Task<ActionResult<Author>> GetAuthor(Guid id)
         {
           if (_context.Authors == null)
           {
@@ -53,7 +53,7 @@ namespace LibraryManager.Controllers
         // PUT: api/Authors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAuthor(int id, Author author)
+        public async Task<IActionResult> PutAuthor(Guid id, Author author)
         {
             if (id != author.Id)
             {
@@ -98,7 +98,7 @@ namespace LibraryManager.Controllers
 
         // DELETE: api/Authors/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAuthor(int id)
+        public async Task<IActionResult> DeleteAuthor(Guid id)
         {
             if (_context.Authors == null)
             {
@@ -116,7 +116,7 @@ namespace LibraryManager.Controllers
             return NoContent();
         }
 
-        private bool AuthorExists(int id)
+        private bool AuthorExists(Guid id)
         {
             return (_context.Authors?.Any(e => e.Id == id)).GetValueOrDefault();
         }

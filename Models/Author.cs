@@ -3,9 +3,11 @@ namespace LibraryManager.Models
 {
     public class Author
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public Guid? Id { get; set; }
+        public string? Name { get; set; }
+
+        // Navigation property to the list of Books
         [JsonIgnore]
-        public ICollection<Book>? Books { get; set; }
+        public List<Book>? Books { get; set; }
     }
 }

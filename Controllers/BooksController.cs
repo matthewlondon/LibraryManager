@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using LibraryManager.Models;
+using LibraryManager;
 using LibraryManager.Data;
+using LibraryManager.Models;
 
 namespace LibraryManager.Controllers
 {
@@ -29,18 +30,20 @@ namespace LibraryManager.Controllers
           {
               return NotFound();
           }
-            return await _context.Books.ToListAsync();
+            var books = await _context.Books.Include(b => b.Author).ToListAsync();
+            return books;
         }
 
         // GET: api/Books/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Book>> GetBook(int id)
+        public async Task<ActionResult<Book>> GetBook(Guid id)
         {
-          if (_context.Books == null)
-          {
-              return NotFound();
-          }
-            var book = await _context.Books.FindAsync(id);
+            if (_context.Books == null)
+            {
+                return NotFound();
+            }
+
+            var book = await _context.Books.Include(b => b.Author).FirstOrDefaultAsync(b => b.Id == id);
 
             if (book == null)
             {
@@ -50,15 +53,17 @@ namespace LibraryManager.Controllers
             return book;
         }
 
+
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBook(int id, Book book)
+        public async Task<IActionResult> PutBook(Guid id, Book book)
         {
             if (id != book.Id)
             {
                 return BadRequest();
             }
+
 
             _context.Entry(book).State = EntityState.Modified;
 
@@ -98,7 +103,7 @@ namespace LibraryManager.Controllers
 
         // DELETE: api/Books/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBook(int id)
+        public async Task<IActionResult> DeleteBook(Guid id)
         {
             if (_context.Books == null)
             {
@@ -116,7 +121,7 @@ namespace LibraryManager.Controllers
             return NoContent();
         }
 
-        private bool BookExists(int id)
+        private bool BookExists(Guid id)
         {
             return (_context.Books?.Any(e => e.Id == id)).GetValueOrDefault();
         }
